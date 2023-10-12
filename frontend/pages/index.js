@@ -1,8 +1,10 @@
 
 export default function Home() {
   return (
-  <div className='flex'>
-    
-  </div>
+  <section className='w-full'>
+    <div className="">
+      
+    </div>
+  </section>
   )
 }
