@@ -5,6 +5,8 @@ export default function Home() {
     <div className="font-bold text-white text-[2rem]">
       Resu<span className="text-[#BFBFBF]">.me</span>
       <div>Login</div>
+      <div>Username</div>
+      <div>Password</div>
     </div>
   </section>
   )
