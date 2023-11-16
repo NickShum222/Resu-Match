@@ -1,9 +1,13 @@
-
-import Landing from './pages/Landing';
-import { Signup } from './pages/Signup';
+import { 
+  Signup,
+  Landing
+ } from "./pages";
+import { AuthProvider } from "./utils/AuthContext";
 function App() {
   return (
-    <Signup/>
+    <AuthProvider>
+      <Landing />
+    </AuthProvider>
   );
 }
 

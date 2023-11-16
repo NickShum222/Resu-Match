@@ -3,9 +3,13 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Input } from "@material-tailwind/react";
+import { useAuth } from '../../utils/AuthContext';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../utils/firebase';
+
+export default function Signup () {
 
 
-export const Signup = () => {
   // const [submit , setSubmit] = useState(false)
   const formik = useFormik({
     initialValues: {
@@ -21,6 +25,11 @@ export const Signup = () => {
     }),
     onSubmit: (values, { resetForm, setSubmitting}) => {
       console.log(values);
+      createUserWithEmailAndPassword(auth, values.email, values.password).then(() => {
+        console.log("User created", auth.currentUser);
+      }).catch((error) => {
+        console.log(error)
+      })
       setSubmitting(false);
       resetForm();
     }
