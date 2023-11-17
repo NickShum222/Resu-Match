@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Input } from "@material-tailwind/react";
-import { useAuth } from '../../utils/AuthContext';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 
