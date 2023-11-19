@@ -200,8 +200,8 @@ export default function Signup() {
           </Link>
         </CardFooter>
       </Card>
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/2"/>
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/2"/>
+      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3"/>
+      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3"/>
     </section>
     // <div className="w-100 flex flex-col justify-center items-center h-[100vh]">
     //   <h3>Sign Up</h3>

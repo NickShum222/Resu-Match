@@ -3,11 +3,12 @@ import Signup from "./Auth/Signup";
 import ResetPass from "./Auth/Resetpass";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-
+import Sidebar from "../components/Sidebar";
 export { 
   Login, 
   Signup, 
   ResetPass, 
   Landing,
-  Dashboard
+  Dashboard,
+  Sidebar
 };

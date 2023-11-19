@@ -65,8 +65,8 @@ export default function Landing() {
         <div className="w-[75%]">
           <div className="bg-[#BFBFBF] w-full h-[500px]" />
         </div>
-        <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/2" />
-        <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/2" />
+        <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
+        <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />
       </div>
       <div />
     </>
