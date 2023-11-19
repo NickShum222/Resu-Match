@@ -2,7 +2,9 @@ import React from "react";
 import { useEffect, useState, createContext, useContext } from "react";
 import { auth } from "./firebase";
 
-const AuthContext = createContext();
+const AuthContext = createContext(
+
+);
 
 export function useAuth() {
   return useContext(AuthContext);
@@ -10,10 +12,12 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      setCurrentUser(currentUser);
+      setCurrentUser(user);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -26,6 +30,7 @@ export function AuthProvider({ children }) {
   const value = {
     currentUser,
     signOut,
+    loading
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

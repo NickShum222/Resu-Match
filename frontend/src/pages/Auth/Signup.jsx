@@ -7,9 +7,6 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../utils/firebase';
 
 export default function Signup () {
-
-
-  // const [submit , setSubmit] = useState(false)
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -28,9 +25,10 @@ export default function Signup () {
         console.log("User created", auth.currentUser);
       }).catch((error) => {
         console.log(error)
+      }).finally(() => {
+        setSubmitting(false);
+        resetForm();
       })
-      setSubmitting(false);
-      resetForm();
     }
     
   })
@@ -45,7 +43,7 @@ export default function Signup () {
         onChange={formik.handleChange}
         value={formik.values.email}
         />
-        <div className="">{formik.errors.email}</div>
+       <div className="">{formik.errors.email}</div>
 
         <Input
           id='password'
@@ -63,7 +61,7 @@ export default function Signup () {
           onChange={formik.handleChange}
           value={formik.values.confirmPassword}
         />
-        <div className="">{formik.errors.confirmPassword}</div>
+      <div className="">{formik.errors.confirmPassword}</div>
 
         <button 
         disabled={formik.isSubmitting}
