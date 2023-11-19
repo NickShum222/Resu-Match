@@ -60,7 +60,7 @@ const Login = () => {
   });
   return (
     <section className="bg-black w-100 flex justify-center items-center h-[100dvh] relative overflow-hidden">
-      <Card className="w-[450px] bg-[#1a1a1a] px-4">
+      <Card className="w-[550px] bg-[#1a1a1a] px-4">
         <CardHeader
           floated={false}
           className="place-items-center bg-transparent shadow-none"
