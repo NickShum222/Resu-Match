@@ -51,6 +51,24 @@ export default function Signup() {
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
           console.log("User created", auth.currentUser);
+          // console.log("Firebase Token:", auth.currentUser.accessToken)
+
+          // fetch("http://127.0.0.1:8000/register/", {
+          //   method: 'POST',
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //   },
+          //   body: JSON.stringify({
+          //     firebase_token: auth.currentUser.accessToken,
+          //   }),
+          // })
+          //   .then(response => response.json())
+          //   .then(data => {
+          //     console.log(data); // Handle the response from the backend
+          //   })
+          //   .catch(error => {
+          //     console.error('Error:', error);
+          //   });
           navigate("/dashboard");
         })
         .catch((error) => {
