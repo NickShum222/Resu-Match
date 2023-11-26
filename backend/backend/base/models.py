@@ -18,7 +18,6 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.email
 
-
 class Resume(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     date_uploaded = models.DateTimeField(auto_now_add=True)
@@ -32,8 +31,8 @@ class Job(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.PROTECT, null=True)
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
-    date_applied = models.DateTimeField()
-    status = models.CharField(max_length=200)
+    date_applied = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=200, default='Pending')
 
     def __str__(self):
         return self.title
