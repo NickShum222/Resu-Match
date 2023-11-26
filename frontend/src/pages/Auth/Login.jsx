@@ -60,7 +60,7 @@ const Login = () => {
   });
   return (
     <section className="bg-black w-100 flex justify-center items-center h-[100dvh] relative overflow-hidden">
-      <Card className="w-[550px] bg-[#1a1a1a] px-4">
+      <Card className="w-[550px] bg-[#1a1a1a] px-4 z-10 shadow-lg">
         <CardHeader
           floated={false}
           className="place-items-center bg-transparent shadow-none"
@@ -171,8 +171,8 @@ const Login = () => {
         disabled={formik.isSubmitting}
         type="submit">Login</button>
       </form> */}
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3"/>
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3"/>
+      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3"/>
+      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3"/>
 
     </section>
   );

@@ -6,6 +6,7 @@ import { Button } from '@material-tailwind/react'
 import Sidebar from '../components/Sidebar'
 export default function Dashboard () {
   const navigate = useNavigate();
+  const { currentUser } = useAuth();
   const logout = () => {
     auth.signOut().then(() => {
       navigate('/')
@@ -17,6 +18,7 @@ export default function Dashboard () {
     <div className='bg-black w-full h-[100dvh]'>
       <Sidebar/>
       <Button onClick={logout}>Logout</Button>
+      <h1 className='text-black'>Welcome {currentUser.email}</h1>
     </div>
   )
 }

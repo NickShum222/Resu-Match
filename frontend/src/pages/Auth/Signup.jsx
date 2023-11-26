@@ -17,17 +17,41 @@ import { auth } from "../../utils/firebase";
 import { useAuth } from "../../utils/AuthContext";
 
 export default function Signup() {
-  const {state} = useLocation();
+  const { state } = useLocation();
   const email = state;
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [alert, setAlert] = useState(false);
   const { currentUser, loading } = useAuth();
+  const [fname, setFname] = useState("");
+  const [lname, setLname] = useState("");
   useEffect(() => {
     if (currentUser) {
       navigate("/dashboard");
     }
   }, []);
+
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:8000/api/add-user", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         email: currentUser.email,
+  //         firstName: "John",
+  //         lastName: "Doe",
+  //         uid: currentUser.uid,
+  //       }),
+  //     })
+  //       .then((response) => {
+  //         console.log(response);
+  //         navigate("/dashboard");
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  // }, [currentUser])
   const formik = useFormik({
     initialValues: {
       email: email || "",
@@ -46,30 +70,32 @@ export default function Signup() {
         [Yup.ref("password"), null],
         "Passwords must match"
       ),
+      firstName: Yup.string().required("First name is required"),
+      lastName: Yup.string().required("Last name is required"),
     }),
     onSubmit: (values, { resetForm, setSubmitting }) => {
       createUserWithEmailAndPassword(auth, values.email, values.password)
         .then(() => {
           console.log("User created", auth.currentUser);
-          // console.log("Firebase Token:", auth.currentUser.accessToken)
-
-          // fetch("http://127.0.0.1:8000/register/", {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          //   body: JSON.stringify({
-          //     firebase_token: auth.currentUser.accessToken,
-          //   }),
-          // })
-          //   .then(response => response.json())
-          //   .then(data => {
-          //     console.log(data); // Handle the response from the backend
-          //   })
-          //   .catch(error => {
-          //     console.error('Error:', error);
-          //   });
-          navigate("/dashboard");
+          fetch("http://127.0.0.1:8000/api/add-user/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: auth.currentUser.email,
+              first_name: values.firstName,
+              last_name: values.lastName,
+              uid: auth.currentUser.uid,
+            }),
+          })
+            .then((response) => {
+              console.log(response);
+              navigate("/dashboard");
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           if (error.code === "auth/email-already-in-use") {
@@ -92,7 +118,7 @@ export default function Signup() {
   });
   return (
     <section className="bg-black w-100 flex justify-center items-center h-[100dvh] relative overflow-hidden">
-      <Card className="w-[550px] bg-[#1a1a1a] px-4">
+      <Card className="w-[550px] bg-[#1a1a1a] px-4 z-[100]">
         <CardHeader
           floated={false}
           className="place-items-center bg-transparent shadow-none"
@@ -129,29 +155,39 @@ export default function Signup() {
             className="w-full flex flex-col justify-center items-center gap-2"
             onSubmit={formik.handleSubmit}
           >
-            <div className="flex w-full items-center gap-2 mb-3">
-              <Input
-                label="First Name"
-                id="firstName"
-                name="firstName"
-                onChange={formik.handleChange}
-                value={formik.values.firstName}
-                color="white"
-                className=""
-                size="lg"
-                autoComplete="off"
-              />
-              <Input
-                label="Last Name"
-                id="lastName"
-                name="lastName"
-                onChange={formik.handleChange}
-                value={formik.values.lastName}
-                color="white"
-                className="w-full"
-                size="lg"
-                autoComplete="off"
-              />
+            <div className="flex w-full items-start gap-2 mb-3">
+              <div className="flex w-[50%] flex-col">
+                <Input
+                  label="First Name"
+                  id="firstName"
+                  name="firstName"
+                  onChange={formik.handleChange}
+                  value={formik.values.firstName}
+                  color="white"
+                  className=""
+                  size="lg"
+                  autoComplete="off"
+                />
+                <div className="w-full mt-1 text-start text-[15px]">
+                  {formik.errors.firstName}
+                </div>
+              </div>
+              <div className="flex w-[50%] flex-col">
+                <Input
+                  label="Last Name"
+                  id="lastName"
+                  name="lastName"
+                  onChange={formik.handleChange}
+                  value={formik.values.lastName}
+                  color="white"
+                  className="w-full"
+                  size="lg"
+                  autoComplete="off"
+                />
+                <div className="w-full mt-1 text-start text-[15px]">
+                  {formik.errors.lastName}
+                </div>
+              </div>
             </div>
             <Input
               label="Email"
@@ -218,8 +254,8 @@ export default function Signup() {
           </Link>
         </CardFooter>
       </Card>
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3"/>
-      <div className="bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3"/>
+      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
+      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />
     </section>
     // <div className="w-100 flex flex-col justify-center items-center h-[100vh]">
     //   <h3>Sign Up</h3>
