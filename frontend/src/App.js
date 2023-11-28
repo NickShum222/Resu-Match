@@ -1,4 +1,4 @@
-import { Signup, Landing, Login, Dashboard } from "./pages";
+import { Signup, Landing, Login, Dashboard, Jobs, Resumes } from "./pages";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./utils/AuthContext";
 import PrivateRoute from "./utils/PrivateRoute";
@@ -19,6 +19,21 @@ function App() {
               </PrivateRoute>
             }
           />
+          <Route
+            path="/jobs"
+            element={
+              <PrivateRoute>
+                <Jobs />
+              </PrivateRoute>}
+          />
+          <Route
+            path="/resumes"
+            element={
+              <PrivateRoute>
+                <Resumes />
+              </PrivateRoute>}
+          />
+
         </Routes>
       </AuthProvider>
     </Router>
