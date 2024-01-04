@@ -7,5 +7,5 @@ urlpatterns = [
     path('add-user/', views.addUser),
     path('get-user/<str:pk>/', views.getUserById),
     path('add-job/', views.addJob),
-    path('get-jobs/<str:pk>/', views.getJobsById),
+    path('get-jobs/<str:pk>/', views.getJobsByUserId),
 ]

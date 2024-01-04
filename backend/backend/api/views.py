@@ -41,6 +41,14 @@ def getUserById(request, pk):
 
 
 # Job Services
+# Need api view to link job to resume id
+    # Given resume id & job id, change the job column to the resume id
+# Unlink resume to job?
+
+#Get all jobs by Resume Id
+
+#Need service that updates job data
+
 
 @api_view(['POST'])
 def addJob(request):
@@ -49,8 +57,8 @@ def addJob(request):
         company = request.data.get('company')
         status = request.data.get('status')
         date_applied = request.data.get('date_applied')
+        #if resume id is not null, then get the id
 
-        
         user_profile = UserProfile.objects.get(uid=user_uid)
 
         job_data = {
@@ -68,10 +76,27 @@ def addJob(request):
         return Response({"error": serializer.errors}, status=404)
 
 @api_view(['GET'])
-def getJobsById(request, pk):
+def getJobsByUserId(request, pk):
     try:
         jobs = Job.objects.filter(user__uid = pk)
         serializer = JobSerializer(jobs, many=True)
         return Response(serializer.data)
     except Job.DoesNotExist:
         return Response({"error": "Jobs not found"}, status=404)
+
+@api_view(['DELETE'])
+def deleteJobById(request, pk):
+    try:
+        job = Job.objects.filter(user__uid = pk)
+        # delete(job)
+    except Job.DoesNotExist:
+        return Response({"error": "Job not found"}, status=404)
+
+# Resume Services
+#Need service to upload resume
+    #check if there are other resumes of the same name
+
+#Need service to delete resumes
+    #If delete resume, unlink all related jobs that have that resume id and change it to null
+
+#Need service to update the resume data

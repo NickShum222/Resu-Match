@@ -21,7 +21,8 @@ class UserProfile(models.Model):
 class Resume(models.Model):
     user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     date_uploaded = models.DateTimeField(auto_now_add=True)
-    resume_data = models.TextField()
+    description = models.CharField(max_length=200, default='Pending')
+    file = models.FileField(upload_to='resume/', null=True)
 
     def __str__(self):
         return self.user.email
