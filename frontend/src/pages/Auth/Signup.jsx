@@ -236,7 +236,7 @@ export default function Signup() {
             <Button
               disabled={formik.isSubmitting}
               type="submit"
-              className="w-full bg-primary text-[16px]"
+              className="w-full bg-tertiary text-[16px]"
             >
               Sign Up
             </Button>
@@ -247,15 +247,15 @@ export default function Signup() {
             Already have an account?
           </div>
           <Link
-            className=" font-semibold text-[15px] text-[#44a0e6] hover:text-primary transition-all duration-150"
+            className=" font-semibold text-[15px] text-[#44a0e6] hover:text-tertiary transition-all duration-150"
             to="/login"
           >
             Login
           </Link>
         </CardFooter>
       </Card>
-      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
-      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />
+      <div className="z-0 bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
+      <div className="z-0 bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />
     </section>
     // <div className="w-100 flex flex-col justify-center items-center h-[100vh]">
     //   <h3>Sign Up</h3>

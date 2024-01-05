@@ -71,7 +71,11 @@ const Login = () => {
         </CardHeader>
         <CardBody className="flex flex-col w-full justify-center items-center">
           {alert && (
-            <Alert open="alert" onClose={() => setAlert(false)} className="mb-2 py-4 flex items-center bg-red-400">
+            <Alert
+              open="alert"
+              onClose={() => setAlert(false)}
+              className="mb-2 py-4 flex items-center bg-red-400"
+            >
               {error}
             </Alert>
           )}
@@ -103,6 +107,7 @@ const Login = () => {
               className="w-full"
               size="lg"
               autoComplete="off"
+              error={formik.touched.email && Boolean(formik.errors.email)}
             />
             <div className="w-full text-start text-[15px]">
               {formik.errors.email}
@@ -118,12 +123,13 @@ const Login = () => {
               size="lg"
               autoComplete="off"
               type="password"
+              error={formik.touched.password && Boolean(formik.errors.password)}
             />
             <div className="w-full flex justify-between items-start">
               <div className="text-start text-[15px]">
                 {formik.errors.password}
               </div>
-              <div className="font-semibold text-[#44a0e6] text-[15px] hover:text-primary transition-all duration-150">
+              <div className="font-semibold text-[#44a0e6] text-[15px] hover:text-tertiary transition-all duration-150">
                 Forgot Password?
               </div>
             </div>
@@ -131,7 +137,7 @@ const Login = () => {
             <Button
               disabled={formik.isSubmitting}
               type="submit"
-              className="w-full bg-primary text-[16px]"
+              className="w-full bg-tertiary text-[16px]"
             >
               Login
             </Button>
@@ -142,7 +148,7 @@ const Login = () => {
             Don't have an account?
           </div>
           <Link
-            className=" font-semibold text-[15px] text-[#44a0e6] hover:text-primary transition-all duration-150"
+            className=" font-semibold text-[15px] text-[#44a0e6] hover:text-tertiary transition-all duration-150"
             to="/signup"
           >
             Register
@@ -171,9 +177,8 @@ const Login = () => {
         disabled={formik.isSubmitting}
         type="submit">Login</button>
       </form> */}
-      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3"/>
-      <div className="z-0 bg-primary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3"/>
-
+      <div className="z-0 bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
+      <div className="z-0 bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />
     </section>
   );
 };
