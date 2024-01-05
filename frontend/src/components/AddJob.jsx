@@ -36,7 +36,7 @@ const jobStatus = [
   },
 ];
 
-const AddJob = ({ userId }) => {
+const AddJob = ({ userId, setActive }) => {
   const [date, setDate] = useState();
   const [status, setStatus] = useState();
   const formik = useFormik({
@@ -49,20 +49,57 @@ const AddJob = ({ userId }) => {
     validationSchema: Yup.object({
       title: Yup.string().required("Job title is required"),
       company: Yup.string().required("Company is required"),
-      // status: Yup.string().required("Job Status is required"),
-      // date: Yup.string().required("Date is required"),
+      status: Yup.string().required("Job Status is required"),
+      date: Yup.string().required("Date is required"),
     }),
+    // {
+    //   "user_uid": "xXDjojaOYjcw42uZXD58nhIsdN73",
+    //   "title": "Software Engineer",
+    //   "company": "Example Tech",
+    //   "status": "Pending",
+    //   "date_applied": "2024-01-05T10:00:00"
+    // }
     onSubmit: (values, { resetForm, setSubmitting }) => {
-      console.log(values);
+      fetch("http://127.0.0.1:8000/api/add-job/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_uid: userId,
+          title: values.title,
+          company: values.company,
+          status: values.status,
+          date_applied: values.date.toISOString(),
+        }),
+      })
+        .then((res) => {
+          console.log(res);
+          setSubmitting(false);
+          resetForm();
+          setActive(false);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   });
   const handleChange = (e) => {
     setStatus(e);
     formik.setFieldValue("status", e);
   };
+  const handleDateChange = (e) => {
+    setDate(e);
+    formik.setFieldValue("date", e);
+  };
   return (
-    <div className="w-[100vw] h-[100vh] fixed top-0 left-0 flex justify-center items-center bg-black bg-opacity-10 backdrop-blur-sm z-[100]">
-      <Card className="w-[550px] bg-[#1a1a1a] px-4 z-10 shadow-lg">
+    <div
+      className="w-[100vw] h-[100vh] fixed top-0 left-0 flex justify-center items-center bg-black bg-opacity-10 backdrop-blur-sm z-[100]"
+      // onClick={() => {
+      //   setActive(false);
+      // }}
+    >
+      <Card className="w-[550px] bg-[#1a1a1a] px-4 shadow-l z-[200]">
         <CardHeader
           floated={false}
           className="place-items-center bg-transparent shadow-none"
@@ -129,7 +166,7 @@ const AddJob = ({ userId }) => {
                   id="date"
                   name="date"
                   label="Select a Date"
-                  onChange={formik.handleChange}
+                  onChange={handleDateChange}
                   value={date ? format(date, "PPP") : ""}
                   color="white"
                   className="w-full"
@@ -140,8 +177,8 @@ const AddJob = ({ userId }) => {
                 <DayPicker
                   mode="single"
                   selected={date}
-                  onSelect={setDate}
-                  onChange={formik.handleChange}
+                  onSelect={handleDateChange}
+                  onChange={handleDateChange}
                   showOutsideDays
                   className="border-0 z-[120]"
                   classNames={{

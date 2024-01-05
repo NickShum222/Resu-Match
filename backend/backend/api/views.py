@@ -1,3 +1,4 @@
+from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from django.contrib.auth.models import User
@@ -40,14 +41,18 @@ def getUserById(request, pk):
 
 @api_view(['POST'])
 def addJob(request):
+    try:
         user_uid = request.data.get('user_uid')
         title = request.data.get('title')
         company = request.data.get('company')
         status = request.data.get('status')
         date_applied = request.data.get('date_applied')
-        #if resume id is not null, then get the id
 
-        user_profile = UserProfile.objects.get(uid=user_uid)
+        # Attempt to get the user profile based on the provided user_uid
+        try:
+            user_profile = UserProfile.objects.get(uid=user_uid)
+        except UserProfile.DoesNotExist:
+            raise Http404("User profile does not exist")
 
         job_data = {
             'user': user_profile.pk,
@@ -58,10 +63,16 @@ def addJob(request):
         }
 
         serializer = JobSerializer(data=job_data)
-        if serializer.is_valid():
+        
+        try:
+            serializer.is_valid(raise_exception=True)
             serializer.save()
             return Response(serializer.data)
-        return Response({"error": serializer.errors}, status=404)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=500)
 
 @api_view(['GET'])
 def getJobsByUserId(request, pk):

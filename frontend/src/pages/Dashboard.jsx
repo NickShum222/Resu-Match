@@ -7,6 +7,7 @@ import Sidebar from "../components/Sidebar";
 import AddJob from "../components/AddJob";
 export default function Dashboard() {
   const navigate = useNavigate();
+  const [addJob, setAddJob] = useState(false);
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -51,14 +52,20 @@ export default function Dashboard() {
   }
   return (
     <>
-      <AddJob />
-      <div className="bg-black w-full h-[100dvh] relative pl-[200px] py-10">
+      {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
+      <div className="bg-black w-full h-[100dvh] relative pl-[15%] pr-[5%] py-24">
         <Sidebar />
         <div className="text-white text-[44px] font-bold">
           Welcome {userData.first_name}
         </div>
-        {/* <Button onClick={logout}>Logout</Button> */}
-        <h1 className="text-black">Welcome {currentUser.email}</h1>
+        <Button onClick={logout}>Logout</Button>
+        <Button
+          onClick={() => {
+            setAddJob(true);
+          }}
+        >
+          Add Job
+        </Button>
       </div>
     </>
   );

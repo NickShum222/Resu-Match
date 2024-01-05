@@ -25,7 +25,7 @@ class Job(models.Model):
     resume = models.ForeignKey(Resume, on_delete=models.PROTECT, null=True)
     title = models.CharField(max_length=200)
     company = models.CharField(max_length=200)
-    date_applied = models.DateTimeField(auto_now_add=True)
+    date_applied = models.DateTimeField()
     status = models.CharField(max_length=200, default='Pending')
 
     def __str__(self):
