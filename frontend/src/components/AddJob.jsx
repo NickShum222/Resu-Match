@@ -52,13 +52,6 @@ const AddJob = ({ userId, setActive }) => {
       status: Yup.string().required("Job Status is required"),
       date: Yup.string().required("Date is required"),
     }),
-    // {
-    //   "user_uid": "xXDjojaOYjcw42uZXD58nhIsdN73",
-    //   "title": "Software Engineer",
-    //   "company": "Example Tech",
-    //   "status": "Pending",
-    //   "date_applied": "2024-01-05T10:00:00"
-    // }
     onSubmit: (values, { resetForm, setSubmitting }) => {
       fetch("http://127.0.0.1:8000/api/add-job/", {
         method: "POST",
@@ -222,13 +215,23 @@ const AddJob = ({ userId, setActive }) => {
                 />
               </PopoverContent>
             </Popover>
-            <Button
-              disabled={formik.isSubmitting}
-              type="submit"
-              className="w-full bg-tertiary text-[16px]"
-            >
-              Add Job
-            </Button>
+            <div className="flex justify-between items-center w-full">
+              <Button
+                onClick={() => {
+                  setActive(false);
+                }}
+                className="w-[200px] bg-tertiary text-[16px]"
+              >
+                Cancel
+              </Button>
+              <Button
+                disabled={formik.isSubmitting}
+                type="submit"
+                className="w-[200px] bg-tertiary text-[16px]"
+              >
+                Add Job
+              </Button>
+            </div>
           </form>
         </CardBody>
       </Card>

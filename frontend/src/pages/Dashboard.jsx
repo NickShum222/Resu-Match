@@ -55,8 +55,8 @@ export default function Dashboard() {
       {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
       <div className="bg-black w-full h-[100dvh] relative pl-[15%] pr-[5%] py-24">
         <Sidebar />
-        <div className="text-white text-[44px] font-bold">
-          Welcome {userData.first_name}
+        <div className="text-white text-[64px] font-[500]">
+          Welcome <span className="italic">{userData.first_name}</span> 
         </div>
         <Button onClick={logout}>Logout</Button>
         <Button
