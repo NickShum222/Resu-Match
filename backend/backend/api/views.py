@@ -74,6 +74,8 @@ def addJob(request):
     except Exception as e:
         return Response({"error": str(e)}, status=500)
 
+
+
 @api_view(['GET'])
 def getJobsByUserId(request, pk):
     try:
@@ -83,15 +85,55 @@ def getJobsByUserId(request, pk):
     except Job.DoesNotExist:
         return Response({"error": "Jobs not found"}, status=404)
 
+@api_view(['PUT'])
+def editJobByUserId(request, pk):
+    try:
+        job = Job.objects.filter(id=pk)
+    except Job.DoesNotExist:
+        return Response({"error": "Jobs not found"}, status=404)
+    
+    serializer = JobSerializer(job, data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data)
+    return Response(serializer.errors, status=404)
+
 @api_view(['DELETE'])
 def deleteJobById(request, pk):
     try:
         job = Job.objects.filter(user__uid = pk)
-        # delete(job)
+        job.delete()
+        return Response({"success": "Job deleted successfully"}, status=200)
     except Job.DoesNotExist:
         return Response({"error": "Job not found"}, status=404)
 
 # Resume Services
+
+@api_view(['POST'])
+def addResume(request, pk):
+    try:
+        try:
+            user = UserProfile.objects.get(uid=pk)
+        except UserProfile.DoesNotExist:
+            raise Http404("User profile does not exist")
+    
+        file_data = request.data.get('file')
+        if not file_data:
+            return Response({"error": "File data is required"}, status=400)
+        
+        serializer = ResumeSerializer(data={
+            'user': user.id,
+            'description': file_data.name,
+            'file': file_data
+        })
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        else:
+            return Response(serializer.errors, status=400)
+    except:
+        return Response({"error": "Resume upload failed"}, status=404)
 #Need service to upload resume
     #check if there are other resumes of the same name
 

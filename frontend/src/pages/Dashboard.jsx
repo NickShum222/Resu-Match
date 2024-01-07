@@ -5,6 +5,7 @@ import { auth } from "../utils/firebase";
 import { Button } from "@material-tailwind/react";
 import Sidebar from "../components/Sidebar";
 import AddJob from "../components/AddJob";
+import Dropzone from "../components/Dropzone";
 export default function Dashboard() {
   const navigate = useNavigate();
   const [addJob, setAddJob] = useState(false);
@@ -56,7 +57,7 @@ export default function Dashboard() {
       <div className="bg-black w-full h-[100dvh] relative pl-[15%] pr-[5%] py-24">
         <Sidebar />
         <div className="text-white text-[64px] font-[500]">
-          Welcome <span className="italic">{userData.first_name}</span> 
+          Welcome <span className="italic">{userData.first_name}</span>
         </div>
         <Button onClick={logout}>Logout</Button>
         <Button
@@ -66,6 +67,7 @@ export default function Dashboard() {
         >
           Add Job
         </Button>
+        <Dropzone />
       </div>
     </>
   );

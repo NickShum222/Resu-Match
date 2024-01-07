@@ -1,22 +1,44 @@
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
 const Dropzone = () => {
+  const [files, setFiles] = useState([]);
   const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
+    if (acceptedFiles?.length) {
+      setFiles((previousFiles) => [
+        ...previousFiles,
+        ...acceptedFiles.map((file) =>
+          Object.assign(file, { preview: URL.createObjectURL(file) })
+        ),
+      ]);
+    }
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
     <form>
-      <div {...getRootProps()}>
+      <div
+        {...getRootProps()}
+        className={
+          "border-[2px] border-white border-dashed rounded-md h-[200px] flex justify-center items-center"
+        }
+      >
         <input {...getInputProps()} />
         {isDragActive ? (
-          <p>Drop the files here ...</p>
+          <p className="text-white">Drop your resume here ...</p>
         ) : (
-          <p>Drag 'n' drop some files here, or click to select files</p>
+          <p className="text-white">
+            Drag 'n' drop your file here, or click to select file (.docx, .pdf)
+          </p>
         )}
       </div>
+      <ul>
+        {files.map((file) => (
+          <li key={file.name} className={"text-white"}>
+            {file.name}
+          </li>
+        ))}
+      </ul>
     </form>
   );
 };
