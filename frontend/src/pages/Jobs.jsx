@@ -26,6 +26,7 @@ const Jobs = () => {
       .then((data) => {
         setJobs(data);
         setStatusTotal(countJobsByStatus(data));
+        console.log(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -93,7 +94,14 @@ const Jobs = () => {
               <p className="w-[20%]">Date Applied</p>
             </div>
             {jobs.map((job) => {
-              return <JobItem key={job.id} jobEntry={job} />;
+              return (
+                <JobItem
+                  key={job.id}
+                  jobEntry={job}
+                  setJobs={setJobs}
+                  jobs={jobs}
+                />
+              );
             })}
           </div>
         )}
@@ -102,15 +110,42 @@ const Jobs = () => {
   );
 };
 
-const JobItem = ({ jobEntry }) => {
+const JobItem = ({ jobEntry, setJobs, jobs }) => {
   const { id, title, company, status, date_applied, resume_id } = jobEntry;
+  const deleteJobById = (idToDelete) => {
+    fetch(`http://127.0.0.1:8000/api/delete-job/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        const updatedJobs = jobs.filter((job) => job.id !== idToDelete);
+        setJobs(updatedJobs);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
   return (
-    <div className="w-full flex justify-start items-center text-white px-8 py-2">
-      <p className="w-[20%]">{title}</p>
-      <p className="w-[20%]">{company}</p>
-      <p className="w-[20%]">{status}</p>
-      <p className="w-[20%]">{date_applied}</p>
-    </div>
+    <>
+      <div className="w-full flex justify-start items-center text-white px-8 py-2">
+        <p className="w-[20%]">{title}</p>
+        <p className="w-[20%]">{company}</p>
+        <p className="w-[20%]">{status}</p>
+        <p className="w-[20%]">{date_applied}</p>
+        <div className="flex justify-end items-center w-[20%] gap-6">
+          <a>Edit</a>
+          <button
+            onClick={() => {
+              deleteJobById(id);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      </div>
+    </>
   );
 };
 

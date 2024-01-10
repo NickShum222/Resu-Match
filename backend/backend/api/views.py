@@ -102,7 +102,7 @@ def editJobByUserId(request, pk):
 @api_view(['DELETE'])
 def deleteJobById(request, pk):
     try:
-        job = Job.objects.filter(user__uid = pk)
+        job = Job.objects.filter(id = pk)
         job.delete()
         return Response({"success": "Job deleted successfully"}, status=200)
     except Job.DoesNotExist:
