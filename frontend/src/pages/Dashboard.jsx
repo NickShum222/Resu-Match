@@ -54,7 +54,7 @@ export default function Dashboard() {
   return (
     <>
       {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
-      <div className="bg-black w-full h-[100dvh] relative pl-[15%] pr-[5%] py-24">
+      <div className="bg-primary w-full h-[100dvh] relative pl-[350px] pr-[50px] py-24">
         <Sidebar />
         <div className="text-white text-[64px] font-[500]">
           Welcome <span className="italic">{userData.first_name}</span>

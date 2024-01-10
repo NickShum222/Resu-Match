@@ -9,6 +9,8 @@ module.exports = withMT({
         primary: "#181818",
         secondary: "#1A1A1A",
         tertiary: "#5C67DE",
+        border: "#242635",
+        card: "#252525",
       },
     },
   },

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Button } from "@material-tailwind/react";
 import AddJob from "../components/AddJob";
 import Sidebar from "../components/Sidebar";
 import { useAuth } from "../utils/AuthContext";
@@ -57,36 +58,60 @@ const Jobs = () => {
   return (
     <>
       {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
-      <div className="bg-black w-full h-[100dvh] relative pl-[15%] pr-[5%] pb-24 pt-8">
+      <div className="bg-primary w-full h-[100dvh] relative pl-[350px] pr-[50px] pb-24 pt-8">
         <Sidebar />
         <div className="w-full flex flex-col justify-start gap-4">
           {!loading && (
             <div className="w-full flex justify-between items-center">
               {statusTotal.map((status) => (
                 <div
-                  className="w-[23%] flex flex-col justify-center items-center border-[1px] border-solid border-white text-white"
+                  className="w-[24%] flex flex-col justify-center items-center bg-card text-white rounded-lg py-4 text-[20px]"
                   key={status.status}
                 >
-                  <div>{status.count}</div>
-                  <div>{status.status}</div>
+                  <div className="capitalize">{status.status}</div>
+                  <div className="">{status.count}</div>
                 </div>
               ))}
             </div>
           )}
-          <div >
-
-          </div>
         </div>
+        <div className="w-full flex justify-end">
+          <Button
+            onClick={() => {
+              setAddJob(true);
+            }}
+          >
+            Add Job
+          </Button>
+        </div>
+        {!loading && (
+          <div className="w-full flex flex-col justify-start items-center">
+            <div className="w-full flex justify-start items-center text-white text-[20px] px-8 py-2 border-b-[1px] border-[#bfbfbf] border-solid">
+              <p className="w-[20%]">Title</p>
+              <p className="w-[20%]">Company</p>
+              <p className="w-[20%]">Status</p>
+              <p className="w-[20%]">Date Applied</p>
+            </div>
+            {jobs.map((job) => {
+              return <JobItem key={job.id} jobEntry={job} />;
+            })}
+          </div>
+        )}
       </div>
     </>
   );
 };
 
-const StatusBar = ({ name, data }) => {
-  <div className="w-full border-[1px] border-white border-solid flex flex-col justify-center items-center text-white font-medium">
-    <div>{data}</div>
-    <div>{name}</div>
-  </div>;
+const JobItem = ({ jobEntry }) => {
+  const { id, title, company, status, date_applied, resume_id } = jobEntry;
+  return (
+    <div className="w-full flex justify-start items-center text-white px-8 py-2">
+      <p className="w-[20%]">{title}</p>
+      <p className="w-[20%]">{company}</p>
+      <p className="w-[20%]">{status}</p>
+      <p className="w-[20%]">{date_applied}</p>
+    </div>
+  );
 };
 
 export default Jobs;
