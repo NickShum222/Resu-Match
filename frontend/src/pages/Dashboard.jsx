@@ -6,6 +6,8 @@ import { Button } from "@material-tailwind/react";
 import Sidebar from "../components/Sidebar";
 import AddJob from "../components/AddJob";
 import Dropzone from "../components/Dropzone";
+import JobStatusPieChart from "../components/JobStatusPieChart";
+
 export default function Dashboard() {
   const navigate = useNavigate();
   const [addJob, setAddJob] = useState(false);
@@ -53,13 +55,26 @@ export default function Dashboard() {
   }
   return (
     <>
-      {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
+      {/* {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />} */}
       <div className="bg-primary w-full h-[100dvh] relative pl-[350px] pr-[50px] py-24">
         <Sidebar />
         <div className="text-white text-[64px] font-[500]">
           Welcome <span className="italic">{userData.first_name}</span>
         </div>
-        <Button onClick={logout}>Logout</Button>
+        <div className="flex flex-col justify-start items-center w-full">
+          <div className="flex justify-center items-center w-full gap-3">
+            <div className="w-[70%] bg-card rounded-md">asdf</div>
+            <div className="w-[30%] bg-card rounded-md">
+              <JobStatusPieChart
+                applied={19}
+                interview={19}
+                offer={19}
+                rejected={19}
+              />
+            </div>
+          </div>
+        </div>
+        {/* <Button onClick={logout}>Logout</Button>
         <Button
           onClick={() => {
             setAddJob(true);
@@ -67,7 +82,7 @@ export default function Dashboard() {
         >
           Add Job
         </Button>
-        <Dropzone />
+        <Dropzone /> */}
       </div>
     </>
   );

@@ -1,0 +1,77 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Database
+*.sqlite3
+db.sqlite3
+
+# Log files
+*.log
+
+# Static files
+staticfiles/
+
+# Media files
+media/
+
+# Virtual environment
+venv/
+.env
+
+# Django secret key
+*.secret
+
+# Visual Studio Code settings
+.vscode/
+
+# IDE settings
+*.idea/
+*.iml
+
+# Dependency directories
+lib/
+libs/
+lib64/
+bin/
+include/
+
+# Local development settings
+local_settings.py
+
+# Ignore migration files, as they can be specific to your local database state
+**/migrations/*.py
+**/migrations/*.pyc
+
+# Ignore test database
+*.db
+
+# Ignore .pyc files in migrations
+__pycache__/migrations/
+
+# Ignore Celery Beat schedule database
+celerybeat-schedule
+
+# Ignore pipenv virtual environment
+Pipfile.lock
+
+# Ignore coverage reports
+.coverage
+htmlcov/
+
+# Ignore Docker files and directories
+Dockerfile
+docker-compose.yml
+.docker/
+
+# Ignore node_modules directory
+node_modules/
+
+# Ignore pytest cache
+__pycache__/
+.pytest_cache/
+
+# Ignore compiled Python files
+*.pyc
