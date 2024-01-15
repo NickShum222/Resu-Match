@@ -7,6 +7,8 @@ import Sidebar from "../components/Sidebar";
 import AddJob from "../components/AddJob";
 import Dropzone from "../components/Dropzone";
 import JobStatusPieChart from "../components/JobStatusPieChart";
+import TimelineChart from "../components/TimelineChart";
+import ResumeUsageChart from "../components/ResumeUsageChart";
 
 export default function Dashboard() {
   const navigate = useNavigate();
@@ -62,15 +64,34 @@ export default function Dashboard() {
           Welcome <span className="italic">{userData.first_name}</span>
         </div>
         <div className="flex flex-col justify-start items-center w-full">
-          <div className="flex justify-center items-center w-full gap-3">
-            <div className="w-[70%] bg-card rounded-md">asdf</div>
-            <div className="w-[30%] bg-card rounded-md">
+          <div className="flex justify-center items-center w-full gap-6">
+            <div className="w-[70%] bg-card rounded-md">
+              <TimelineChart />
+            </div>
+            <div className="w-[30%] bg-card rounded-md flex flex-col justify-center items-start">
+              <div className="text-white px-4 py-2">Job Status</div>
+              {/* Use function from jobs page to get data for this chart */}
               <JobStatusPieChart
-                applied={19}
-                interview={19}
-                offer={19}
-                rejected={19}
+                applied={69}
+                interview={7}
+                offer={10}
+                rejected={40}
               />
+            </div>
+          </div>
+          <div className="flex justify-center items-center w-full gap-6 mt-6">
+            {/* <ResumeUsageChart/> */}
+            <div className="bg-card rounded-md w-[30%]">
+              <ResumeUsageChart />
+            </div>
+            <div className="bg-card rounded-md w-[70%] flex flex-col justify-start items-center px-6 py-2">
+              <div className="w-full flex justify-between items-center text-white font-bold text-[18px] h-[32px]">
+                <h4 className="">Recently Applied Jobs</h4>
+                <div>+</div>
+              </div>
+              <div>
+                
+              </div>
             </div>
           </div>
         </div>

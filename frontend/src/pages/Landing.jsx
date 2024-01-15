@@ -16,7 +16,7 @@ export default function Landing() {
   return (
     <>
       <div
-        className={`relative bg-black h-[100dvh] px-[50px] py-[20px] w-100 justify-between items-center flex flex-col overflow-hidden`}
+        className={`relative bg-black h-[100dvh] px-[50px] py-[20px] w-100 justify-start items-center flex flex-col overflow-hidden`}
       >
         <div className="w-full flex justify-end items-center text-white">
           <Link to="/login">
@@ -36,7 +36,7 @@ export default function Landing() {
             </Button>
           </Link>
         </div>
-        <div className="flex justify-center items-center  flex-col">
+        <div className="flex justify-center items-center  flex-col mt-[7%]">
           <div className="text-white font-bold text-[64px]">
             Resu.<span className="text-tertiary">me</span>
           </div>
@@ -66,7 +66,7 @@ export default function Landing() {
           </div>
         </div>
         <div className="w-[75%]">
-          <div className="bg-[#BFBFBF] w-full h-[500px]" />
+          {/* <div className="bg-[#BFBFBF] w-full h-[500px]" /> */}
         </div>
         <div className="bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -left-1/2 -bottom-1/3" />
         <div className="bg-tertiary blur-[750px] w-[75%] h-[75%] absolute -right-1/2 -bottom-1/3" />

@@ -1,9 +1,44 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-const JobStatusPieChart = ({ applied, interview, offer, rejected }) => {
-  const series = [applied, interview, offer, rejected];
-  const labels = ["Applied", "Interview", "Offer", "Rejected"];
+const ResumeUsageChart = ({ applied, interview, offer, rejected }) => {
+  const dummyData = [
+    {
+      name: "Fall2023Resume.pdf",
+      count: 24,
+    },
+    {
+      name: "Fall2023ResumeUPDATED.pdf",
+      count: 87,
+    },
+    {
+      name: "Spring2023Resume.pdf",
+      count: 13,
+    },
+    {
+      name: "Winter2023Resume.pdf",
+      count: 5,
+    },
+  ];
+  //Pass in a resume object:
+  /*
+  [
+    {
+      name: Fall2023Resume.pdf,
+      count: 24
+    },
+    {
+      name: Fall2023ResumeUPDATED.pdf,
+      count: 87
+    },
+    {
+      name: Spring2023Resume.pdf,
+      count: 13
+    },
+  ]
+  */
+  const series = dummyData.map((item) => item.count);
+  const labels = dummyData.map((item) => item.name);
   const options = {
     chart: {
       foreColor: "#fff",
@@ -21,7 +56,7 @@ const JobStatusPieChart = ({ applied, interview, offer, rejected }) => {
     dataLabels: {
       enabled: true,
       formatter: function (val, opts) {
-        if (val < 5) return "";
+        if (val < 15) return "";
         return opts.w.globals.labels[opts.seriesIndex];
       },
     },
@@ -77,4 +112,4 @@ const JobStatusPieChart = ({ applied, interview, offer, rejected }) => {
   );
 };
 
-export default JobStatusPieChart;
+export default ResumeUsageChart;

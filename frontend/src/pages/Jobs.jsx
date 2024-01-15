@@ -66,7 +66,7 @@ const Jobs = () => {
             <div className="w-full flex justify-between items-center">
               {statusTotal.map((status) => (
                 <div
-                  className="w-[24%] flex flex-col justify-center items-center bg-card text-white rounded-lg py-4 text-[20px]"
+                  className="w-[24%] flex flex-col justify-center items-center border-[1px] border-solid shadow-inner text-white rounded-lg py-4 text-[20px]"
                   key={status.status}
                 >
                   <div className="capitalize">{status.status}</div>
@@ -135,11 +135,12 @@ const JobItem = ({ jobEntry, setJobs, jobs }) => {
         <p className="w-[20%] capitalize">{status}</p>
         <p className="w-[20%]">{date_applied}</p>
         <div className="flex justify-end items-center w-[20%] gap-6">
-          <a>Edit</a>
+          <button className="text-blue-400">Edit</button>
           <button
             onClick={() => {
               deleteJobById(id);
             }}
+            className="text-red-600"
           >
             Delete
           </button>
