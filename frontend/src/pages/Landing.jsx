@@ -36,9 +36,9 @@ export default function Landing() {
             </Button>
           </Link>
         </div>
-        <div className="flex justify-center items-center  flex-col mt-[7%]">
+        <div className="flex justify-center items-center  flex-col mt-[18%]">
           <div className="text-white font-bold text-[64px]">
-            Resu.<span className="text-tertiary">me</span>
+            Resu<span className="text-tertiary">Match</span>
           </div>
           <div className="font-bold text-white text-[48px]">
             Elevate Your Job Application Game

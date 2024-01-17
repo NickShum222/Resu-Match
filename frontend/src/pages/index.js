@@ -6,13 +6,15 @@ import Dashboard from "./Dashboard";
 import Sidebar from "../components/Sidebar";
 import Resumes from "./Resumes";
 import Jobs from "./Jobs";
-export { 
-  Login, 
-  Signup, 
-  ResetPass, 
+import Account from "./Account";
+export {
+  Login,
+  Signup,
+  ResetPass,
   Landing,
   Dashboard,
   Sidebar,
   Resumes,
-  Jobs
+  Jobs,
+  Account,
 };

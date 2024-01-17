@@ -60,7 +60,7 @@ const Jobs = () => {
     <>
       {addJob && <AddJob setActive={setAddJob} userId={currentUser.uid} />}
       <div className="bg-primary w-full h-[100dvh] relative pl-[350px] pr-[50px] pb-24 pt-8">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="w-full flex flex-col justify-start gap-4">
           {!loading && (
             <div className="w-full flex justify-between items-center">
@@ -127,13 +127,21 @@ const JobItem = ({ jobEntry, setJobs, jobs }) => {
         console.error("Error fetching data:", error);
       });
   };
+  const formatDate = new Date(jobEntry.date_applied).toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  );
   return (
     <>
       <div className="w-full flex justify-start items-center text-white px-8 py-2">
         <p className="w-[20%]">{title}</p>
         <p className="w-[20%]">{company}</p>
         <p className="w-[20%] capitalize">{status}</p>
-        <p className="w-[20%]">{date_applied}</p>
+        <p className="w-[20%]">{formatDate}</p>
         <div className="flex justify-end items-center w-[20%] gap-6">
           <button className="text-blue-400">Edit</button>
           <button

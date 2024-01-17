@@ -76,7 +76,7 @@ const ResumeUsageChart = ({ applied, interview, offer, rejected }) => {
       show: false,
     },
     // title: {
-    //   text: "Job Status",
+    //   text: "Frequently Used Resumes",
     //   align: "left",
     //   margin: 10,
     //   offsetX: 0,
