@@ -127,7 +127,7 @@ const JobItem = ({ jobEntry, setJobs, jobs }) => {
         console.error("Error fetching data:", error);
       });
   };
-  const formatDate = new Date(jobEntry.date_applied).toLocaleDateString(
+  const formatDate = new Date(date_applied).toLocaleDateString(
     "en-US",
     {
       year: "numeric",

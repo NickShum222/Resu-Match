@@ -92,9 +92,14 @@ export default function Dashboard() {
           Welcome <span className="italic">{userData.first_name}</span>
         </div>
         <div className="flex flex-col justify-start items-center w-full">
-          <div className="flex justify-center items-center w-full gap-6">
-            <div className="w-[70%] bg-card rounded-md">
-              <TimelineChart />
+          <div className="flex justify-center items-start w-full gap-6">
+            <div className="w-[70%] bg-card rounded-md flex flex-col justify-center items-start">
+              <div className="text-white font-bold px-4 py-2 w-full">
+                Job Application Timeline
+              </div>
+              <div className="w-full">
+                <TimelineChart />
+              </div>
             </div>
             <div className="w-[30%] bg-card rounded-md flex flex-col justify-center items-start">
               <div className="text-white font-bold px-4 py-2">Job Status</div>

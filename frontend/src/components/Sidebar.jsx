@@ -36,24 +36,63 @@ const Sidebar = () => {
         <h3 className="text-white font-bold text-[28px] text-center mb-10 px-8">
           Resu<span className="text-tertiary">Match</span>
         </h3>
-        {navLinks.map((link, index) => {
-          const { path, name, icon: IconComponent } = link;
-          return (
-            <Link to={path} key={index} className="w-full">
-              <div
-                className={`flex items-center justify-start w-[100%] py-2 px-4 gap-4 hover:bg-[#bfbfbf] cursor-pointer text-[24px]  hover:text-tertiary transition-all duration-[350ms] font-medium text-[#Bfbfbf] hover:bg-opacity-10 ${
-                  activeLink === name
-                    ? "bg-[#bfbfbf] bg-opacity-10 border-r-[4px] rounded-l-md border-solid border-tertiary text-tertiary"
-                    : ""
-                }`}
-                onClick={() => setActiveLink(name)}
-              >
-                <IconComponent />
-                <div>{name}</div>
-              </div>
-            </Link>
-          );
-        })}
+        <div className="flex flex-col justify-between w-full">
+          <div className="w-full">
+            {navLinks.slice(0, 3).map((link, index) => {
+              const { path, name, icon: IconComponent } = link;
+              return (
+                <Link to={path} key={index} className="w-full">
+                  <div
+                    className={`flex items-center justify-start w-[100%] py-2 px-4 gap-4 hover:bg-[#bfbfbf] cursor-pointer text-[24px]  hover:text-tertiary transition-all duration-[350ms] font-medium text-[#Bfbfbf] hover:bg-opacity-10 ${
+                      activeLink === name
+                        ? "bg-[#bfbfbf] bg-opacity-10 border-r-[4px] rounded-l-md border-solid border-tertiary text-tertiary"
+                        : ""
+                    }`}
+                    onClick={() => setActiveLink(name)}
+                  >
+                    <IconComponent />
+                    <div>{name}</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div className="w-full">
+            {navLinks.slice(3, 4).map((link, index) => {
+              const { path, name, icon: IconComponent } = link;
+              return (
+                <Link to={path} key={index} className="w-full">
+                  <div
+                    className={`flex items-center justify-start w-[100%] py-2 px-4 gap-4 hover:bg-[#bfbfbf] cursor-pointer text-[24px]  hover:text-tertiary transition-all duration-[350ms] font-medium text-[#Bfbfbf] hover:bg-opacity-10 ${
+                      activeLink === name
+                        ? "bg-[#bfbfbf] bg-opacity-10 border-r-[4px] rounded-l-md border-solid border-tertiary text-tertiary"
+                        : ""
+                    }`}
+                    onClick={() => setActiveLink(name)}
+                  >
+                    <IconComponent />
+                    <div>{name}</div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* <Link to={navLinks[3].path} key={navLinks[3].path} className="w-full">
+            <div
+              className={`flex items-center justify-start w-[100%] py-2 px-4 gap-4 hover:bg-[#bfbfbf] cursor-pointer text-[24px]  hover:text-tertiary transition-all duration-[350ms] font-medium text-[#Bfbfbf] hover:bg-opacity-10 ${
+                activeLink === navLinks[3].name
+                  ? "bg-[#bfbfbf] bg-opacity-10 border-r-[4px] rounded-l-md border-solid border-tertiary text-tertiary"
+                  : ""
+              }`}
+              onClick={() => setActiveLink(navLinks[3].name)}
+            >
+              <IconComponent />
+              <div>{name}</div>
+            </div>
+          </Link> */}
+        </div>
       </div>
     </>
   );

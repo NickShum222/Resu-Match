@@ -39,7 +39,7 @@ const TimelineChart = () => {
 
   const options = {
     chart: {
-      height: 320,
+      height: 300,
       type: "line",
       zoom: {
         enabled: false,
@@ -66,6 +66,7 @@ const TimelineChart = () => {
       },
     },
   };
+  
 
   return (
     <ReactApexChart
